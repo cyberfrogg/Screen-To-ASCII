@@ -54,7 +54,6 @@ namespace ScreenToASCII
             {
                 Color pxc = screenshot[x * screenXMod, lineY * screenYMod];
                 float avgNormolized = ((float)((pxc.R + pxc.G + pxc.B) / 3)) / 255;
-                //float avgNormolized = pxc.GetBrightness();
                 result += _gradient[(int)(avgNormolized * _gradient.Length) - 1];
             }
 

@@ -26,15 +26,14 @@ namespace ScreenToASCII
 
             int width = rawCapture.Width;
             int height = rawCapture.Height;
-            //TODO determine bytes per pixel
+
             int bytesPerPixel = 4;
             int maxPointerLenght = width * height * bytesPerPixel;
             int stride = width * bytesPerPixel;
             byte R, G, B, A;
 
 
-            BitmapData bData = rawCapture.LockBits(
-            new System.Drawing.Rectangle(0, 0, rawCapture.Width, rawCapture.Height),
+            BitmapData bData = rawCapture.LockBits(new Rectangle(0, 0, rawCapture.Width, rawCapture.Height),
             ImageLockMode.ReadOnly, rawCapture.PixelFormat);
             byte* scan0 = (byte*)bData.Scan0.ToPointer();
 
@@ -45,10 +44,9 @@ namespace ScreenToASCII
                 R = scan0[i + 2];
                 A = scan0[i + 3];
 
-
                 screenshot[x, y] = Color.FromArgb(R, G, B, 255);
 
-                if(x == width - 1)
+                if (x == width - 1)
                 {
                     y++;
                     x = -1;
